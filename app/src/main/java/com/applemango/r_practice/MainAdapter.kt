@@ -11,7 +11,7 @@ import com.bumptech.glide.Glide
 
 class MainAdapter(private val context: Context):RecyclerView.Adapter<MainAdapter.ViewHolder>() {
 
-    var itemlist = mutableListOf<m_MovieDTO>()
+    var itemlist = listOf<m_MovieDTO>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.item_recycler_main,parent,false)
@@ -32,8 +32,8 @@ class MainAdapter(private val context: Context):RecyclerView.Adapter<MainAdapter
         private val moviewposter : ImageView = itemView.findViewById(R.id.movie_poster)
 
         fun bind(item : m_MovieDTO){
-            moviename.text = item.movieNm
-            moviewgenre.text = item.rank
+            moviename.text = item.movieNm.toString()
+            moviewgenre.text = item.rank.toString()
             //Glide.with(itemView).load(item.moviePoster).into(moviewposter)
         }
     }
