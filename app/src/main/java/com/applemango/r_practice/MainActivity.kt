@@ -44,7 +44,6 @@ class MainActivity : AppCompatActivity() {
                             mAdapter.itemlist = movieList
                             mAdapter.notifyDataSetChanged()
                         }
-
                     }
 
                     override fun onFailure(call: Call<MovieResponse>, t: Throwable) {
