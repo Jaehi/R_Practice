@@ -15,10 +15,7 @@ import java.util.*
 class MainActivity : AppCompatActivity() {
     lateinit var mAdapter : MainAdapter
     val items = listOf<m_MovieDTO>()
-    val apiURL = "http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json"
     val KEY = "b18e23af64d1ac84e0f918a093fa331e"
-    var targetdt = "20201003"
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
