@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -16,6 +17,8 @@ class MainActivity : AppCompatActivity() {
     lateinit var mAdapter : MainAdapter
     val items = listOf<m_MovieDTO>()
     val KEY = "b18e23af64d1ac84e0f918a093fa331e"
+    val clientID : String = "Z2nZiBjLroT1hESkr3iC"
+    val clientSecret : String = "_q_7JEK2_A"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,12 +44,29 @@ class MainActivity : AppCompatActivity() {
                             mAdapter.itemlist = movieList
                             mAdapter.notifyDataSetChanged()
                         }
-                    }
+                        for (i : Int in 0..movieList.size-1){
+                            MoviePosterBuilder.p_api
+                                    .getPoster(clientID,clientSecret,movieList.get(i).movieNm)
+                                    .enqueue(object : Callback<PosterResult>{
+                                        override fun onResponse(call: Call<PosterResult>, response: Response<PosterResult>) {
+                                            val PosterResponse = response.body()
+                                            val posterList : List<m_PosterDTO> = PosterResponse!!.posterresult
+                                            Log.d("00000000000","$posterList")
+                                        }
 
+                                        override fun onFailure(call: Call<PosterResult>, t: Throwable) {
+                                            TODO("Not yet implemented")
+                                        }
+
+                                    })
+                        }
+                    }
                     override fun onFailure(call: Call<MovieResponse>, t: Throwable) {
                         Log.d("fffffffff","fail")}
 
                 })
+
+
 
 
 
