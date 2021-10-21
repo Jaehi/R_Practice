@@ -1,39 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="200dp"
+    android:layout_height="100dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/movie_poster"
-        android:layout_width="140dp"
-        android:layout_height="180dp"
+    <TextView
+        android:id="@+id/movie_rank"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginStart="10dp"
+        android:text="영화랭크 "
+        android:textSize="20sp"
+        android:layout_marginStart="20dp"
         />
 
     <TextView
         android:id="@+id/movie_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toEndOf="@+id/movie_poster"
+        app:layout_constraintStart_toEndOf="@+id/movie_rank"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/movie_genre"
+        app:layout_constraintBottom_toBottomOf="parent"
         android:text="영화제목"
         android:textSize="20sp"
+        android:layout_marginStart="20dp"
         />
-    <TextView
-        android:id="@+id/movie_genre"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toEndOf="@+id/movie_poster"
-        app:layout_constraintTop_toBottomOf="@+id/movie_name"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:text="영화장르"
-        android:textSize="20sp"
-        />
+
 
 
 

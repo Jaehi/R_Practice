@@ -2,7 +2,7 @@ package com.applemango.r_practice
 
 import com.google.gson.annotations.SerializedName
 
-class PosterResult {
+class NaverResult {
     @SerializedName("items")
-    var posterresult : List<m_PosterDTO> = arrayListOf()
+    var posterresult : List<m_NaverDTO> = arrayListOf()
 }

@@ -1,27 +1,41 @@
 package com.applemango.r_practice
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
-class MainAdapter(private val context: Context):RecyclerView.Adapter<MainAdapter.ViewHolder>() {
+class MainAdapter(private val context: Context, intent: Any):RecyclerView.Adapter<MainAdapter.ViewHolder>() {
 
     var itemlist = listOf<m_MovieDTO>()
-   // var poster = listOf<m_PosterDTO>()
+
+    interface OnItemClickListener{
+        fun onItemClick(v:View, data: m_MovieDTO, pos : Int)
+    }
+    private var listener : OnItemClickListener? = null
+    fun setOnItemClickListener(listener : OnItemClickListener) {
+        this.listener = listener
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.item_recycler_main, parent, false)
         return ViewHolder(view)
+
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(itemlist[position])
-
+        holder.itemView.setOnClickListener{
+            val intent = Intent(context,ResultActivity::class.java)
+            intent.putExtra("moviename",itemlist.get(position).movieNm)
+            context.startActivity(intent)
+        }
     }
 
     override fun getItemCount(): Int {
@@ -30,13 +44,19 @@ class MainAdapter(private val context: Context):RecyclerView.Adapter<MainAdapter
 
     inner class ViewHolder(view: View):RecyclerView.ViewHolder(view) {
         private val moviename : TextView = itemView.findViewById(R.id.movie_name)
-        private val moviewgenre : TextView = itemView.findViewById(R.id.movie_genre)
-        private val moviewposter : ImageView = itemView.findViewById(R.id.movie_poster)
+        private val moviewgenre : TextView = itemView.findViewById(R.id.movie_rank)
+
 
         fun bind(item: m_MovieDTO){
             moviename.text = item.movieNm.toString()
             moviewgenre.text = item.rank.toString()
-           // Glide.with(itemView).load(url).into(moviewposter)
+            val pos = adapterPosition
+            if(pos!= RecyclerView.NO_POSITION)
+            {
+                itemView.setOnClickListener {
+                    listener?.onItemClick(itemView,item,pos)
+                }
+            }
         }
     }
 

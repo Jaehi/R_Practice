@@ -1,10 +1,11 @@
 package com.applemango.r_practice
 
-import android.graphics.Movie
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
+import android.view.View
+import android.widget.AdapterView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import retrofit2.Call
@@ -13,12 +14,25 @@ import retrofit2.Response
 import java.text.SimpleDateFormat
 import java.util.*
 
+
 class MainActivity : AppCompatActivity() {
-    lateinit var mAdapter : MainAdapter
+    lateinit var mAdapter: MainAdapter
     val items = listOf<m_MovieDTO>()
     val KEY = "b18e23af64d1ac84e0f918a093fa331e"
-    val clientID : String = "Z2nZiBjLroT1hESkr3iC"
-    val clientSecret : String = "_q_7JEK2_A"
+
+    private inline fun <T> Call<T>.enqueue(crossinline function: (body: T) -> Unit) {
+        enqueue(object : Callback<T> {
+            override fun onResponse(call: Call<T>, response: Response<T>) {
+                if (response.body() == null)
+                else
+                    function(response.body()!!)
+            }
+
+            override fun onFailure(call: Call<T>, t: Throwable) {
+
+            }
+        })
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,49 +42,35 @@ class MainActivity : AppCompatActivity() {
         val dateFormat = SimpleDateFormat("yyyyMMdd", Locale.getDefault())
         val targetDt = dateFormat.format(date.time)
         val mrecycler = findViewById<RecyclerView>(R.id.recycler_main)
+        val intent = Intent(this, ResultActivity::class.java)
+        var count: Int = 0
 
-        mAdapter = MainAdapter(this)
+        mAdapter = MainAdapter(this, MainAdapter::class.java)
         mrecycler.adapter = mAdapter
 
 
+
         RetrofitBuilder.api
-                .getMovieList(KEY,targetDt)
-                .enqueue(object :  Callback<MovieResponse> {
-                    override fun onResponse(call: Call<MovieResponse>, response: Response<MovieResponse>) {
-                        val MovieResponse = response.body()
-                        val movieList : List<m_MovieDTO> = MovieResponse!!.boxofficeResult!!.dailyBoxOfficeList
-                        Log.d("eeeeee","$movieList")
-                        items.apply {
-                            mAdapter.itemlist = movieList
-                            mAdapter.notifyDataSetChanged()
-                        }
-                        for (i : Int in 0..movieList.size-1){
-                            MoviePosterBuilder.p_api
-                                    .getPoster(clientID,clientSecret,movieList.get(i).movieNm)
-                                    .enqueue(object : Callback<PosterResult>{
-                                        override fun onResponse(call: Call<PosterResult>, response: Response<PosterResult>) {
-                                            val PosterResponse = response.body()
-                                            val posterList : List<m_PosterDTO> = PosterResponse!!.posterresult
-                                            Log.d("00000000000","$posterList")
-                                        }
+                .getMovieList(KEY, targetDt)
+                .enqueue { body: MovieResponse ->
+                    val movieResult: List<m_MovieDTO> = body.boxofficeResult!!.dailyBoxOfficeList
 
-                                        override fun onFailure(call: Call<PosterResult>, t: Throwable) {
-                                            TODO("Not yet implemented")
-                                        }
-
-                                    })
-                        }
+                    items.apply {
+                        mAdapter.itemlist = movieResult
+                        mAdapter.notifyDataSetChanged()
                     }
-                    override fun onFailure(call: Call<MovieResponse>, t: Throwable) {
-                        Log.d("fffffffff","fail")}
 
-                })
+                    mAdapter.setOnItemClickListener(object : MainAdapter.OnItemClickListener{
+                        override fun onItemClick(v: View, data: m_MovieDTO, pos: Int) {
+                            intent.putExtra("moviename",movieResult.get(pos).movieNm)
+                            startActivity(intent)
 
+                        }
 
+                    })
+                }
 
 
 
     }
-
-
 }
