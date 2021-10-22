@@ -11,7 +11,8 @@ interface NaverAPI {
             @Header("X-Naver-Client-Id") clientID : String? ,
             @Header("X-Naver-Client-Secret") clientSecreat : String?,
             @Query("query") query : String?,
-           // @Query("image") image : String?,
-           // @Query("title") title : String?
+            //@Query("image") image : String?,
+            //@Query("title") title : String?
+
     ):Call<NaverResult>
 }
