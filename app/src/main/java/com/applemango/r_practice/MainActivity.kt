@@ -19,6 +19,8 @@ class MainActivity : AppCompatActivity() {
     lateinit var mAdapter: MainAdapter
     val items = listOf<m_MovieDTO>()
     val KEY = "b18e23af64d1ac84e0f918a093fa331e"
+    val clientID: String = "Z2nZiBjLroT1hESkr3iC"
+    val clientSecret: String = "_q_7JEK2_A"
 
     private inline fun <T> Call<T>.enqueue(crossinline function: (body: T) -> Unit) {
         enqueue(object : Callback<T> {
@@ -69,6 +71,7 @@ class MainActivity : AppCompatActivity() {
 
                     })
                 }
+
 
 
 
