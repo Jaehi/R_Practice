@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.net.toUri
 import com.bumptech.glide.Glide
 import retrofit2.Call
 import retrofit2.Callback
@@ -23,7 +24,7 @@ class ResultActivity : AppCompatActivity() {
         val ResultTitle = R.id.result_moviename
         val ResultDirector = R.id.result_moviedirector
         val ResultDate = R.id.result_moviedate
-        val image = findViewById<ImageView>(R.id.result_movieposter)
+
 
         val namefiled = findViewById<TextView>(R.id.result_moviename)
 
@@ -36,13 +37,17 @@ class ResultActivity : AppCompatActivity() {
 
     override fun onStart() {
         val movieName = intent.getStringExtra("moviename")
+        val image = findViewById<ImageView>(R.id.result_movieposter)
         super.onStart()
         NaverBuilder.p_api.getPoster(clientID, clientSecret, movieName).enqueue(object : Callback<NaverResult> {
             override fun onResponse(call: Call<NaverResult>, response: Response<NaverResult>) {
                 val posterRespons = response.body()
                 val resultList: List<m_NaverDTO> = posterRespons!!.posterresult
+
+
                 Log.d("성공햇나?", "$resultList")
 
+                    Glide.with(this@ResultActivity).load(resultList.get(0).image).into(image)
 
             }
 
