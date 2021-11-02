@@ -20,17 +20,11 @@ class ResultActivity : AppCompatActivity() {
         setContentView(R.layout.activity_result)
         val movieName = intent.getStringExtra("moviename")
 
-
         val ResultTitle = R.id.result_moviename
         val ResultDirector = R.id.result_moviedirector
         val ResultDate = R.id.result_moviedate
 
-
         val namefiled = findViewById<TextView>(R.id.result_moviename)
-
-
-
-
 
         namefiled.setText(movieName.toString())
     }
@@ -48,6 +42,7 @@ class ResultActivity : AppCompatActivity() {
                 Log.d("성공햇나?", "$resultList")
 
                     Glide.with(this@ResultActivity).load(resultList.get(0).image).into(image)
+
 
             }
 
