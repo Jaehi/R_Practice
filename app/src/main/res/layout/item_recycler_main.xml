@@ -14,6 +14,8 @@
         android:text="영화랭크 "
         android:textSize="20sp"
         android:layout_marginStart="20dp"
+        android:fontFamily="bold"
+        android:textColor="@color/highlight"
         />
 
     <TextView
@@ -26,6 +28,8 @@
         android:text="영화제목"
         android:textSize="20sp"
         android:layout_marginStart="20dp"
+        android:fontFamily="@font/regular"
+        android:textColor="@color/second"
         />
 
 
