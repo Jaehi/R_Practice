@@ -8,7 +8,11 @@ data class m_NaverDTO (
         @SerializedName("title")
         var title : String?,
         @SerializedName("image")
-        var image : String
+        var image : String,
+        @SerializedName("userRating")
+        var rating : Float,
+        @SerializedName("actor")
+        var actor : String
         ):Serializable{
 
         }
