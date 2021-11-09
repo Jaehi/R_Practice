@@ -15,6 +15,7 @@ import retrofit2.Response
 class ResultActivity : AppCompatActivity() {
     val clientID: String = "Z2nZiBjLroT1hESkr3iC"
     val clientSecret: String = "_q_7JEK2_A"
+    val KEY : String = "Y28020JD91GTMQ0L5SF0"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
