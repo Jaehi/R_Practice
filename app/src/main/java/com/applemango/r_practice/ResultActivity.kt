@@ -35,6 +35,7 @@ class ResultActivity : AppCompatActivity() {
         val movieName = intent.getStringExtra("moviename")
         val image = findViewById<ImageView>(R.id.result_movieposter)
         super.onStart()
+
         NaverBuilder.p_api.getPoster(clientID, clientSecret, movieName).enqueue(object : Callback<NaverResult> {
             override fun onResponse(call: Call<NaverResult>, response: Response<NaverResult>) {
                 val posterRespons = response.body()
