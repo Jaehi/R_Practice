@@ -1,5 +1,6 @@
-package com.applemango.r_practice
+package com.applemango.r_practice.Utils.Naver
 
+import com.applemango.r_practice.Data.Naver.NaverResult
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Header

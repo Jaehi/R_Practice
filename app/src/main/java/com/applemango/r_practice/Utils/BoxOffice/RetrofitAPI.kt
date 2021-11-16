@@ -1,6 +1,7 @@
-package com.applemango.r_practice
+package com.applemango.r_practice.Utils.BoxOffice
 
 
+import com.applemango.r_practice.Data.BoxOffice.MovieResponse
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query

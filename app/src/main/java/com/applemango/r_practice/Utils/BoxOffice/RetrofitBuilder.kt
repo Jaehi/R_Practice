@@ -1,4 +1,4 @@
-package com.applemango.r_practice
+package com.applemango.r_practice.Utils.BoxOffice
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

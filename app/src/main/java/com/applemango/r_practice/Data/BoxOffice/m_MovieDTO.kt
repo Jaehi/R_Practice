@@ -1,4 +1,4 @@
-package com.applemango.r_practice
+package com.applemango.r_practice.Data.BoxOffice
 
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
