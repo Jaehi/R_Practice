@@ -24,7 +24,7 @@
         android:layout_marginStart="20dp"
         android:fontFamily="@font/regular"
         android:text="영화제목"
-        android:textColor="@color/second"
+        android:textColor="@color/highlight"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/movie_rank"
