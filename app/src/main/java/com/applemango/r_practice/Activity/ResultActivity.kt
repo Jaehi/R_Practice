@@ -23,19 +23,15 @@ class ResultActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_result)
         val movieName = intent.getStringExtra("moviename")
-
+        val movieActor = findViewById<TextView>(R.id.result_moviedirector)
+        val rating = findViewById<RatingBar>(R.id.rating)
+        val image = findViewById<ImageView>(R.id.result_movieposter)
         val namefiled = findViewById<TextView>(R.id.result_moviename)
+
         namefiled.text = movieName.toString()
 
         namefiled.setText(movieName.toString())
-    }
 
-    override fun onStart() {
-        val movieActor = findViewById<TextView>(R.id.result_moviedirector)
-        val rating = findViewById<RatingBar>(R.id.rating)
-        val movieName = intent.getStringExtra("moviename")
-        val image = findViewById<ImageView>(R.id.result_movieposter)
-        super.onStart()
 
         NaverBuilder.p_api.getPoster(clientID, clientSecret, movieName).enqueue(object : Callback<NaverResult> {
 
@@ -61,8 +57,8 @@ class ResultActivity : AppCompatActivity() {
             }
 
         })
+    }
 
-}
 
     fun getActor(data :String):List<String>{
         val datalist = data.split("|")
