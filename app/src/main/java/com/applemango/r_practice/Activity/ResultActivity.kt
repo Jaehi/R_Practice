@@ -25,6 +25,7 @@ class ResultActivity : AppCompatActivity() {
         val movieName = intent.getStringExtra("moviename")
 
         val namefiled = findViewById<TextView>(R.id.result_moviename)
+        namefiled.text = movieName.toString()
 
         namefiled.setText(movieName.toString())
     }
@@ -41,12 +42,12 @@ class ResultActivity : AppCompatActivity() {
             override fun onResponse(call: Call<NaverResult>, response: Response<NaverResult>) {
                 val posterRespons = response.body()
                 val resultList: List<m_NaverDTO> = posterRespons!!.posterresult
-                val ratingresult = (resultList.get(0).rating) / 2
-                val actor = getActor(resultList.get(0).actor)
-                Log.d("성공햇나?", "$resultList")
-                Log.d("TLQkf", "${actor}")
+                val ratingresult = (resultList[0].rating) / 2
+                val actor = getActor(resultList[0].actor)
+                Log.d("S", "$resultList")
+                Log.d("F", "$actor")
 
-                Glide.with(this@ResultActivity).load(resultList.get(0).image).into(image)
+                Glide.with(this@ResultActivity).load(resultList[0].image).into(image)
                 rating.rating = ratingresult
 
                 for (i in actor.indices){
@@ -56,7 +57,7 @@ class ResultActivity : AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<NaverResult>, t: Throwable) {
-                Log.d("실패했다", "$t")
+                Log.d("F", "$t")
             }
 
         })
@@ -64,7 +65,7 @@ class ResultActivity : AppCompatActivity() {
 }
 
     fun getActor(data :String):List<String>{
-        var datalist = data.split("|")
+        val datalist = data.split("|")
         return datalist
 
     }
