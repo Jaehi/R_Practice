@@ -11,18 +11,15 @@ import com.applemango.r_practice.Activity.ResultActivity
 import com.applemango.r_practice.Data.BoxOffice.m_MovieDTO
 import com.applemango.r_practice.R
 
-class MainAdapter(private val context: Context, intent: Any) :
+class MainAdapter(val onClick : (m_MovieDTO) -> Unit ) :
     RecyclerView.Adapter<MainAdapter.ViewHolder>() {
-
+    lateinit var context : Context
     var itemlist = listOf<m_MovieDTO>()
 
-    interface OnItemClickListener {
-        fun onItemClick(v: View, data: m_MovieDTO, pos: Int)
-    }
 
-    private var listener: OnItemClickListener? = null
-    fun setOnItemClickListener(listener: OnItemClickListener) {
-        this.listener = listener
+    override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
+        super.onAttachedToRecyclerView(recyclerView)
+        context = recyclerView.context
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -55,7 +52,7 @@ class MainAdapter(private val context: Context, intent: Any) :
             val pos = adapterPosition
             if (pos != RecyclerView.NO_POSITION) {
                 itemView.setOnClickListener {
-                    listener?.onItemClick(itemView, item, pos)
+                    onClick(item)
                 }
             }
         }

@@ -11,6 +11,5 @@ interface RetrofitAPI {
     fun getMovieList(
         @Query("key") key : String?,
         @Query("targetDt") targetDt : String?
-
     ):Call<MovieResponse>
 }
