@@ -24,7 +24,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     val movieList = MutableLiveData<MovieResponse>()
     private var _movieData = MutableLiveData<List<m_MovieDTO>>()
     val movieData : LiveData<List<m_MovieDTO>> get() = _movieData
-
+    private var tempUrl = ""
     val text = MutableLiveData<String>("11")
 
 
@@ -54,11 +54,26 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                 val title = it.attr("title")
                 val code = it.attr("href").split("=")[1]
                 val posterUrl = "https://movie.naver.com/movie/bi/mi/photoViewPopup.naver?movieCode=$code"
-                moviewResult[title] = posterUrl
+                getPoster(title,posterUrl)
                 Log.d("asassaassaaasasa","${ moviewResult.keys.filter { it.contains(title) }} , ${
                     moviewResult[title]}")
+            }
+        }
+    }
+    fun getPoster(title: String , posterLink : String){
+
+        CoroutineScope(Dispatchers.IO).launch {
+            val url = posterLink
+            val doc = Jsoup.connect(url).get()
+            val ele = doc.select("div[id=page_content]").select("a").select("img")
+
+            ele.forEach {
+                val poster = it.attr("src")
+                moviewResult[title] = poster
+                Log.d("sdfjklsdfjkljklsdfjklsdf","${poster}")
 
             }
         }
+
     }
 }

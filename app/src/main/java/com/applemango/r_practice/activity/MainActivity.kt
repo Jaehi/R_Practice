@@ -17,10 +17,11 @@ class MainActivity : AppCompatActivity() {
     }
     private val viewModel : MainViewModel by viewModels()
 
-    private val adapter = MainAdapter{
-        val title = viewModel.moviewResult.keys.contains(it.movieNm).toString()
-        val poster = viewModel.moviewResult[it.movieNm].toString()
+    private val adapter = MainAdapter{ data ->
+        val title = data.movieNm
+        val poster = viewModel.moviewResult[data.movieNm].toString()
         startActivity(Intent(this,CrawlingResultActivity::class.java).apply {
+            Log.d("dasfjdfasjklsdfjkljsdfkl","$title")
             putExtra("movieName",title)
             putExtra("moviePoster",poster)
         })
