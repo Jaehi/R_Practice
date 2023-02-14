@@ -1,4 +1,4 @@
-package com.applemango.r_practice.Data.Naver
+package com.applemango.r_practice.data.naver
 
 import com.google.gson.annotations.SerializedName
 

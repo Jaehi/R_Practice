@@ -1,21 +1,20 @@
 package com.applemango.r_practice
 
 import android.util.Log
-import com.applemango.r_practice.Data.BoxOffice.MovieResponse
-import com.applemango.r_practice.Utils.BoxOffice.RetrofitAPI
-import com.applemango.r_practice.Utils.BoxOffice.RetrofitBuilder
+import com.applemango.r_practice.data.boxOffice.MovieResponse
+import com.applemango.r_practice.utils.BoxOffice.RetrofitBuilder
+import com.applemango.r_practice.utils.Naver.NaverBuilder
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 object ServerConnector {
 
-
     private val apiServer  = RetrofitBuilder.api
-
 
     fun getMovieList(key : String, targetDate : String, callback :(MovieResponse) -> Unit){
         apiServer.getMovieList(key, targetDate).enqueue {
+            Log.d("CCCCCCCCC","$it")
             callback(it)
         }
     }

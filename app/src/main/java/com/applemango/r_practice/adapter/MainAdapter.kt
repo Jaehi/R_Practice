@@ -1,21 +1,29 @@
-package com.applemango.r_practice.Adapter
+package com.applemango.r_practice.adapter
 
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.applemango.r_practice.Activity.ResultActivity
-import com.applemango.r_practice.Data.BoxOffice.m_MovieDTO
+import com.applemango.r_practice.activity.ResultActivity
+import com.applemango.r_practice.data.boxOffice.m_MovieDTO
 import com.applemango.r_practice.R
+import com.applemango.r_practice.activity.CrawlingResultActivity
 
 class MainAdapter(val onClick : (m_MovieDTO) -> Unit ) :
     RecyclerView.Adapter<MainAdapter.ViewHolder>() {
     lateinit var context : Context
-    var itemlist = listOf<m_MovieDTO>()
+    private var itemlist = listOf<m_MovieDTO>()
 
+
+    fun setList(data : List<m_MovieDTO>){
+        itemlist = data
+        Log.d("!!!!!!!!!!!!!!!!!!!","${itemlist}")
+        notifyDataSetChanged()
+    }
 
     override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
         super.onAttachedToRecyclerView(recyclerView)
@@ -30,11 +38,6 @@ class MainAdapter(val onClick : (m_MovieDTO) -> Unit ) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(itemlist[position])
-        holder.itemView.setOnClickListener {
-            val intent = Intent(context, ResultActivity::class.java)
-            intent.putExtra("moviename", itemlist.get(position).movieNm)
-            context.startActivity(intent)
-        }
     }
 
     override fun getItemCount(): Int {

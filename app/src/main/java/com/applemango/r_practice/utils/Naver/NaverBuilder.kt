@@ -1,4 +1,4 @@
-package com.applemango.r_practice.Utils.Naver
+package com.applemango.r_practice.utils.Naver
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
