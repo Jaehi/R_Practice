@@ -33,16 +33,15 @@ import javax.net.ssl.HttpsURLConnection
 
 class CrawlingResultActivity : AppCompatActivity() {
 
-    private val binding : ActivityCrawlingResultBinding by lazy {
+    private val bind : ActivityCrawlingResultBinding by lazy {
         ActivityCrawlingResultBinding.inflate(LayoutInflater.from(this))
     }
 
     private val viewModel : CrawlingResultViewModel by viewModels()
 
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         val movieName = intent.getStringExtra("movieName")
         val moviePoseter = intent.getStringExtra("moviePoster")
         Log.d("checkData","$movieName , $moviePoseter")
@@ -55,7 +54,7 @@ class CrawlingResultActivity : AppCompatActivity() {
             viewModel.setMovieName(movieName)
         }
 
-        initView(binding)
+        initView(bind)
 
     }
 
@@ -68,10 +67,8 @@ class CrawlingResultActivity : AppCompatActivity() {
     }
 
     private fun setPoster(url : String){
-
-        Log.d("dasfjsdfjkljkl;dfsjkldfas","${viewModel.posterUrl.value}")
         CoroutineScope(Dispatchers.Main).launch {
-            GlideApp.with(this@CrawlingResultActivity).load(url).centerCrop().into(binding.crawMovieposter)
+            GlideApp.with(this@CrawlingResultActivity).load(url).centerCrop().into(bind.crawMovieposter)
         }
     }
 
