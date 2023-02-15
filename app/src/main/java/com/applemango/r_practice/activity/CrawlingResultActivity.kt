@@ -44,7 +44,9 @@ class CrawlingResultActivity : AppCompatActivity() {
 
         val movieName = intent.getStringExtra("movieName")
         val moviePoseter = intent.getStringExtra("moviePoster")
-        Log.d("checkData","$movieName , $moviePoseter")
+        val movieStory = intent.getStringExtra("movieStory")
+
+        Log.d("checkData","$movieName , $moviePoseter , $movieStory")
 
         if (moviePoseter != null) {
             setPoster(moviePoseter)
@@ -54,6 +56,11 @@ class CrawlingResultActivity : AppCompatActivity() {
             viewModel.setMovieName(movieName)
         }
 
+        if (movieStory != null){
+            viewModel.setMovieStory(movieStory)
+        }
+
+        viewModel.getMovieData()
         initView(bind)
 
     }

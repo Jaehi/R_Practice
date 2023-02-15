@@ -6,13 +6,17 @@
             type="com.applemango.r_practice.activity.CrawlingResultViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/base"
+    tools:context=".activity.ResultActivity">
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/base"
-        tools:context=".activity.ResultActivity">
+        android:layout_height="wrap_content">
 
 
         <TextView
@@ -40,8 +44,35 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/craw_moviename" />
 
+        <RatingBar
+            android:id="@+id/rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:rating="@{viewmodel.resultList.rating/2}"
+            android:backgroundTint="@color/highlight"
+            android:isIndicator="true"
+            android:max="10"
+            android:stepSize="0.01"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/craw_movieposter" />
 
 
+        <TextView
+            android:layout_width="340dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/regular"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rating"
+            android:layout_marginTop="10dp"
+            android:textSize="18sp"
+            android:text="@{viewmodel.movieStory}"
+            android:paddingBottom="10dp"
+            />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
 </layout>

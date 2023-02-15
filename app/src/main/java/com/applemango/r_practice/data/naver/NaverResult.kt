@@ -4,5 +4,5 @@ import com.google.gson.annotations.SerializedName
 
 class NaverResult {
     @SerializedName("items")
-    var posterresult : List<m_NaverDTO> = arrayListOf()
+    var posterresult : MutableList<m_NaverDTO> = arrayListOf()
 }

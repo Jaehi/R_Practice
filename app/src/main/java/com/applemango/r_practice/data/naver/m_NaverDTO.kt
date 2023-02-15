@@ -12,7 +12,5 @@ data class m_NaverDTO (
         var rating : Float,
         @SerializedName("actor")
         var actor : String
-        ):Serializable{
-
-        }
+        ):Serializable
 
