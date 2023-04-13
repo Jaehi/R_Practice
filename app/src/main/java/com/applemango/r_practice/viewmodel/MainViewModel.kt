@@ -1,13 +1,12 @@
-package com.applemango.r_practice.activity
+package com.applemango.r_practice.viewmodel
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.applemango.r_practice.ConstData
+import com.applemango.r_practice.obj.ConstData
 import com.applemango.r_practice.data.boxOffice.MovieResponse
-import com.applemango.r_practice.ServerConnector
+import com.applemango.r_practice.obj.ServerConnector
 import com.applemango.r_practice.data.boxOffice.m_MovieDTO
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

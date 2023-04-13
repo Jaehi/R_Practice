@@ -1,4 +1,4 @@
-package com.applemango.r_practice
+package com.applemango.r_practice.obj
 
 import android.util.Log
 import com.applemango.r_practice.data.boxOffice.MovieResponse
@@ -16,7 +16,6 @@ object ServerConnector {
 
     fun getMovieList(key : String, targetDate : String, callback :(MovieResponse) -> Unit){
         apiServer.getMovieList(key, targetDate).enqueue {
-            Log.d("CCCCCCCCC","$it")
             callback(it)
         }
     }

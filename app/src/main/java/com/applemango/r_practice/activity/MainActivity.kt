@@ -8,6 +8,7 @@ import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.applemango.r_practice.adapter.MainAdapter
 import com.applemango.r_practice.databinding.ActivityMainBinding
+import com.applemango.r_practice.viewmodel.MainViewModel
 
 
 class MainActivity : AppCompatActivity() {

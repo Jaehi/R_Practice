@@ -1,13 +1,12 @@
-package com.applemango.r_practice.activity
+package com.applemango.r_practice.viewmodel
 
 import android.app.Application
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.applemango.r_practice.ConstData
-import com.applemango.r_practice.ServerConnector
-import com.applemango.r_practice.data.naver.NaverResult
+import com.applemango.r_practice.obj.ConstData
+import com.applemango.r_practice.obj.ServerConnector
 import com.applemango.r_practice.data.naver.m_NaverDTO
 
 class CrawlingResultViewModel(application: Application) : AndroidViewModel(application) {
@@ -20,8 +19,6 @@ class CrawlingResultViewModel(application: Application) : AndroidViewModel(appli
 
     private var _movieStory = MutableLiveData<String>()
     val movieStory : LiveData<String> get() = _movieStory
-
-
 
     fun getMovieData(){
         movieName.value?.let { movieName ->
@@ -37,7 +34,6 @@ class CrawlingResultViewModel(application: Application) : AndroidViewModel(appli
                 }
              }
         }
-
 
     fun setMovieName(name : String) {
         _movieName.value = name
